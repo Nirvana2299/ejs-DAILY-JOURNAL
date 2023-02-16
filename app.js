@@ -3,6 +3,7 @@ const express = require("express");
 const ejs = require("ejs");
 const _ = require('lodash');
 const mongoose = require('mongoose');
+const ObjectId = require("mongoose").Types.ObjectId;
 
 require('dotenv').config();
 const userID = process.env.id_n;
@@ -67,6 +68,17 @@ app.post("/compose", (req, res) => {
 });
 
 
+//app post delete function
+app.post("/delete", (req, res) => {
+  const deleteSelected = req.body.delete;
+  console.log(deleteSelected)
+  Journal.findByIdAndRemove({ _id: deleteSelected }, (err) => {
+    if (!err) {
+      console.log("successfully deleted");
+      res.redirect("/")
+    } else { console.log(err); }
+  })
+})
 
 app.listen(3000, function () {
   console.log("Server started on port 3000");
