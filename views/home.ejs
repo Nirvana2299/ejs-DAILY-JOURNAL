@@ -4,16 +4,16 @@
     <p>
         <%= homeStartingContent %>
     </p>
-
+    <button class="btn btn-success" onclick="location.href='/compose'">Compose</button>
     <% posts.forEach((post)=> { %>
         <h1>
             <%= post.title %>
         </h1>
         <p>
-            <%= post.content.substring(0,100) + " ..."  %>
-            <a href="/posts/<%= post._id %>">Read More</a>
+            <%= post.content.substring(0,100) + " ..." %>
+                <a href="/posts/<%= post._id %>">Read More</a>
         </p>
-        
+
         <% }) %>
 
- <%- include('partials/footer'); -%>
+            <%- include('partials/footer'); -%>
