@@ -15,8 +15,8 @@
                 <a href="/posts/<%= post._id %>">Read More</a>
         </p>
         <form action="/delete" method="post">
-        <button class="btn btn-danger" name="delete" onclick="GFG_click(this.id)"
-            value="<%= post._id %>">Delete</button>
+            <button type="submit" class="btn btn-danger" name="delete" onclick="GFG_click(this.id)"
+                value="<%= post._id %>">Delete</button>
         </form>
 
         <% }) %>

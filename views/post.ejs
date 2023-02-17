@@ -6,10 +6,15 @@
     <p>
         <%= content %>
     </p>
+        <form action="/delete" method="post">
+            <button type="submit" class="btn btn-danger" name="delete" onclick="GFG_click(this.id)"
+                value="<%=id%>">Delete</button>
+        </form>
 
 
 
 
 
 
-    <%- include('partials/footer'); -%>
+
+        <%- include('partials/footer'); -%>
