@@ -47,12 +47,11 @@ app.get("/posts/:postId", (req, res) => {
   const paramPost = req.params.postId
   console.log(paramPost);
   Journal.findOne({ _id: paramPost }, (err, results) => {
-    if (!err) res.render("post", { posts: results.title, content: results.content });
+    if (!err) res.render("post", { posts: results.title, content: results.content, id: results.id });
   });
 });
 
-
-//App Post 
+//App Post For Compose, Adds the data to mongodb Server
 app.post("/compose", (req, res) => {
   const title = req.body.titleInput;
   const content = req.body.postInput;
@@ -71,7 +70,7 @@ app.post("/compose", (req, res) => {
 //app post delete function
 app.post("/delete", (req, res) => {
   const deleteSelected = req.body.delete;
-  console.log(deleteSelected)
+  console.log(deleteSelected);
   Journal.findByIdAndRemove({ _id: deleteSelected }, (err) => {
     if (!err) {
       console.log("successfully deleted");
