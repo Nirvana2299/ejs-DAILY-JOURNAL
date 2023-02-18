@@ -3,14 +3,16 @@
     <h1>
         <%= posts %>
     </h1>
+    <div class="post">
     <p class="white">
         <%= content %>
     </p>
+    
         <form action="/delete" method="post">
             <button type="submit" class="btn btn-outline-danger" name="delete" onclick="GFG_click(this.id)"
                 value="<%=id%>">Delete</button>
         </form>
-
+    </div>
 
 
 
