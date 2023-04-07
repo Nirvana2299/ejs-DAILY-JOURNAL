@@ -1,9 +1,7 @@
 
 const express = require("express");
-const ejs = require("ejs");
 const _ = require('lodash');
 const mongoose = require('mongoose');
-const ObjectId = require("mongoose").Types.ObjectId;
 
 require('dotenv').config();
 const userID = process.env.id_n;
@@ -32,8 +30,7 @@ const Journal = mongoose.model("journal", journalSchema);
 
 app.get("/", (req, res) => {
   Journal.find({}, (err, foundList) => {
-    if (!err) { console.log("successfully found") };
-    res.render("home", { homeStartingContent: homeStartingContent, posts: foundList });
+    if (!err) res.render("home", { homeStartingContent: homeStartingContent, posts: foundList });
   });
 });
 
@@ -45,7 +42,6 @@ app.get("/compose", (req, res) => res.render("compose"));
 
 app.get("/posts/:postId", (req, res) => {
   const paramPost = req.params.postId
-  console.log(paramPost);
   Journal.findOne({ _id: paramPost }, (err, results) => {
     if (!err) res.render("post", { posts: results.title, content: results.content, id: results.id });
   });
@@ -62,15 +58,13 @@ app.post("/compose", (req, res) => {
   compose.save((err) => {
     if (!err) {
       res.redirect("/");
-    }
+    };
   });
 });
-
 
 //app post delete function
 app.post("/delete", (req, res) => {
   const deleteSelected = req.body.delete;
-  console.log(deleteSelected);
   Journal.findByIdAndRemove({ _id: deleteSelected }, (err) => {
     if (!err) {
       console.log("successfully deleted");
